@@ -1,18 +1,15 @@
 body{
     margin: 0 auto;
 }
-.product-img img{
+.cart-inner{
     height: 500px;
-    width: 500px;
-}
-.product-info{
-    margin: 0 auto;
-}
-.description-inner{
-    height: 550px;
     width: 100%;
     background-color: #eee;
     margin-bottom: 25px;
+}
+.cart-img{
+    height: 250px;
+    width: 250px;
 }
 .footer{
     height: 150px;

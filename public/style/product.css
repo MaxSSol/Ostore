@@ -1,0 +1,21 @@
+body{
+    margin: 0 auto;
+}
+.product-img img{
+    height: 500px;
+    width: 500px;
+}
+.product-info{
+    margin: 0 auto;
+}
+.description-inner{
+    height: 550px;
+    width: 100%;
+    background-color: #eee;
+    margin-bottom: 25px;
+}
+.footer{
+    height: 150px;
+    width: 100%;
+    background-color: #eee;
+}

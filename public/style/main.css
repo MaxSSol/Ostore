@@ -1,0 +1,17 @@
+body{
+   margin: 0 auto;
+}
+
+.promo{
+    height: 250px;
+    width: 100%;
+    background-color: #eee;
+}
+.card-body{
+    background-color: #eee;
+}
+.footer{
+    height: 150px;
+    width: 100%;
+    background-color: #eee;
+}

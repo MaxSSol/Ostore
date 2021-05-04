@@ -44,13 +44,70 @@
         </div>
     </section>
     <section class="cart">
-        <div class="cart-inner d-flex justify-content-center align-items-center">
-            <p class="h3 m-0">Cart</p>
+        <div class="cart-inner d-flex flex-column justify-content-center align-items-center">
+            <div class="cart-product d-flex justify-content-center m-0 mb-3">
+                <input type="checkbox">
+                <a class="me-5"><img class="cart-product-img" src="https://content2.rozetka.com.ua/goods/images/base_action/169051181.jpg"" alt="product-1"/></a>
+                <ul class="list-unstyled text-small d-flex align-items-center">
+                    <li class="me-2"><p>Mi Band 6</p></li>
+                    <li class="me-4"><p>1 499 ₴</p></li>
+                </ul>
+            </div>
+            <div class="cart-product d-flex justify-content-center m-0 mb-3">
+                <input type="checkbox">
+                <a class="me-5"><img class="cart-product-img" src="https://content2.rozetka.com.ua/goods/images/base_action/169051181.jpg"" alt="product-1"/></a>
+                <ul class="list-unstyled text-small d-flex align-items-center">
+                    <li class="me-2"><p>Mi Band 6</p></li>
+                    <li class="me-4"><p>1 499 ₴</p></li>
+                </ul>
+            </div>
+            <div class="cart-product d-flex justify-content-center m-0 mb-3">
+                <input type="checkbox">
+                <a class="me-5"><img class="cart-product-img" src="https://content2.rozetka.com.ua/goods/images/base_action/169051181.jpg"" alt="product-1"/></a>
+                <ul class="list-unstyled text-small d-flex align-items-center">
+                    <li class="me-2"><p>Mi Band 6</p></li>
+                    <li class="me-4"><p>1 499 ₴</p></li>
+                </ul>
+            </div>
+            <div class="cart-product d-flex justify-content-center m-0 mb-3">
+                <input type="checkbox">
+                <a class="me-5"><img class="cart-product-img" src="https://content2.rozetka.com.ua/goods/images/base_action/169051181.jpg"" alt="product-1"/></a>
+                <ul class="list-unstyled text-small d-flex align-items-center">
+                    <li class="me-2"><p>Mi Band 6</p></li>
+                    <li class="me-4"><p>1 499 ₴</p></li>
+                </ul>
+            </div>
+            <div class="cart-product d-flex justify-content-center m-0 mb-3">
+                <input type="checkbox">
+                <a class="me-5"><img class="cart-product-img" src="https://content2.rozetka.com.ua/goods/images/base_action/169051181.jpg"" alt="product-1"/></a>
+                <ul class="list-unstyled text-small d-flex align-items-center">
+                    <li class="me-2"><p>Mi Band 6</p></li>
+                    <li class="me-4"><p>1 499 ₴</p></li>
+                </ul>
+            </div>
+            <button type="button" class="btn btn-primary">Buy</button>
         </div>
     </section>
-    <footer class="footer d-flex justify-content-center align-items-center">
+    <footer class="footer pt-4">
         <div class="footer-inner">
-            <p class="footer-text m-0">FOOTER</p>
+            <div class="row">
+                <div class="col-4 d-flex justify-content-center">
+                    <ul class="list-unstyled text-small ms-4">
+                        <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Top-products</a></li>
+                        <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Delivery</a></li>
+                        <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Sign In</a></li>
+                        <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Stuff for developers</a></li>
+                        <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Another one</a></li>
+                        <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Products</a></li>
+                    </ul>
+                </div>
+                <div class="col-4 d-flex justify-content-center">
+                    <ul class="list-unstyled text-small">
+                        <li class="mb-1"><a class="link-secondary text-decoration-none" href="#"><img class="footer-icon" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Telegram_logo.svg/600px-Telegram_logo.svg.png" alt="telegram"/>Telegram</a></li>
+                        <li class="mb-1"><a class="link-secondary text-decoration-none" href="#"><img class="footer-icon" src="https://www.std-carrot.com/Images/Icons/instagram-color.svg" alt="instagram"/>Instagram</a></li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </footer>
 </div>

@@ -1,11 +1,13 @@
 body{
    margin: 0 auto;
 }
-
-.promo{
-    height: 250px;
+.promo-inner{
+    height: 500px;
     width: 100%;
     background-color: #eee;
+}
+.carousel-item{
+    height: 500px;
 }
 .card-body{
     background-color: #eee;

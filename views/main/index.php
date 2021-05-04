@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Ostore</title>
-    <link rel="stylesheet" href="../../public/style/main.css">
+    <link rel="stylesheet" href="../../public/main.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
- </head>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+</head>
 <body>
 <div class="container">
     <header class="d-flex flex-wrap justify-content-center py-3 mb-5 border-bottom">
@@ -31,8 +32,29 @@
             <button type="button" class="btn btn-primary">Sign-up</button>
     </header>
     <section class="promo d-flex justify-content-center align-items-center mb-5">
-        <div class="promo-inner">
-            <p class="promo-title m-0">Slider</p>
+        <div class="promo-inner w-100">
+            <div id="carouselIndicators" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                </div>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img class="d-block w-100" src="https://i.ibb.co/MZh9TRp/slider1.png" alt="test1">
+                    </div>
+                    <div class="carousel-item">
+                        <img class="d-block w-100" src="https://i.ibb.co/5hpkwm6/slider2.png" alt="test2">
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselIndicators" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselIndicators" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
         </div>
     </section>
     <section class="top-products mb-5">
@@ -79,9 +101,26 @@
             </div>
         </div>
     </section>
-    <footer class="footer d-flex justify-content-center align-items-center">
+    <footer class="footer pt-4">
         <div class="footer-inner">
-                <p class="footer-text m-0">FOOTER</p>
+            <div class="row">
+               <div class="col-4 d-flex justify-content-center">
+                   <ul class="list-unstyled text-small ms-4">
+                       <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Top-products</a></li>
+                       <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Delivery</a></li>
+                       <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Sign In</a></li>
+                       <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Stuff for developers</a></li>
+                       <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Another one</a></li>
+                       <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Products</a></li>
+                   </ul>
+               </div>
+                <div class="col-4 d-flex justify-content-center">
+                    <ul class="list-unstyled text-small">
+                        <li class="mb-1"><a class="link-secondary text-decoration-none" href="#"><img class="footer-icon" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Telegram_logo.svg/600px-Telegram_logo.svg.png" alt="telegram"/>Telegram</a></li>
+                        <li class="mb-1"><a class="link-secondary text-decoration-none" href="#"><img class="footer-icon" src="https://www.std-carrot.com/Images/Icons/instagram-color.svg" alt="instagram"/>Instagram</a></li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </footer>
 </div>

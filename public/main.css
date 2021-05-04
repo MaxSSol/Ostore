@@ -1,17 +1,22 @@
 body{
    margin: 0 auto;
 }
-
-.promo{
-    height: 250px;
-    width: 100%;
+.promo-inner{
+    height: 500px;
     background-color: #eee;
+}
+.carousel-item{
+    height: 500px;
 }
 .card-body{
     background-color: #eee;
 }
 .footer{
-    height: 150px;
+    height: 200px;
     width: 100%;
     background-color: #eee;
+}
+.footer-icon{
+    height: 35px;
+    width: 35px;
 }

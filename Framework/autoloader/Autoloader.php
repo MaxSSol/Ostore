@@ -1,5 +1,5 @@
 <?php
-namespace src\autoloader;
+namespace Framework\autoloader;
 
 class Autoloader
 {
@@ -7,7 +7,7 @@ class Autoloader
     {
         spl_autoload_register(function ($className){
             $parts = explode('\\',$className);
-            $path = __DIR__.'/../../'.implode('/',$parts).'.php';
+            $path = __DIR__ . '/../../' .implode('/',$parts).'.php';
             if(file_exists($path)){
                 require_once $path;
             }

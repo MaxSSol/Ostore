@@ -1,5 +1,5 @@
 <?php
-namespace src\core;
+namespace Framework\Core;
 class View
 {
     protected $route;
@@ -15,14 +15,14 @@ class View
             extract($params);
         }
 
-        //$path = __DIR__.'/../views/'.$this->route.'.php'; include route
-        $path = __DIR__.'/../views/'.$template.'.php';//$template = 'main/index.php' only!!!
+        //$path = __DIR__.'/../View/'.$this->route.'.php'; include route
+        $path = __DIR__ . '/../../src/View/' .$template.'.php';//$template = 'main/index.php' only!!!
         if(file_exists($path))
         {
             ob_start();
             require_once  $path;
             $content = ob_get_clean();
-            require_once __DIR__.'/../views/layouts/'.$layout.'.php';
+            require_once __DIR__ . '/../../src/View/layouts/' .$layout.'.php';
         }
 
     }

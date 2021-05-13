@@ -1,8 +1,9 @@
 <?php
 use Framework\autoloader\Autoloader;
-use Framework\Core\View;
+use Framework\Router\Router;
 require_once __DIR__ . '/../Framework/autoloader/Autoloader.php';
 $obj = new Autoloader();
-$obj->load('Framework\\Core\\View');
-$view = new View('main/index.php');
-$view->render('Home',['css'=>'style/main.css'],'main/index');
+$obj->load('Framework\\Router\\Router');
+$Router = new Router();
+$Router->run();
+

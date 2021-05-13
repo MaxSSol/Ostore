@@ -18,7 +18,7 @@
                 <a class="nav-link" href="#">Cart</a>
             </li>
         </ul>
-        <button type="button" class="btn btn-primary me-2">Login</button>
-        <button type="button" class="btn btn-primary">Sign-up</button>
+        <a class="btn btn-primary me-2" href="/account/login" role="button">Sign In</a>
+        <a class="btn btn-primary" href="/account/registration" role="button">Sign Up</a>
     </header>
 </div>

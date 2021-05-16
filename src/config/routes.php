@@ -1,14 +1,15 @@
 <?php
+
 return [
     '/' => [
         'controller' => 'main',
         'action' => 'index'
     ],
-    'account/login' => [
+    '/account/login' => [
         'controller' => 'account',
         'action' => 'login'
     ],
-    'account/logout' => [
+    '/account/logout' => [
         'controller' => 'account',
         'action' => 'logout'
     ]

@@ -1,5 +1,20 @@
 {
+    "name": "maksym/ostore",
+    "authors": [
+        {
+            "name": "Maksym Solomianyi",
+            "email": "maxssolom@gmail.com"
+        }
+    ],
     "require": {
-        "squizlabs/php_codesniffer": "^3.6"
+        "squizlabs/php_codesniffer": "^3.6",
+        "friendsofphp/php-cs-fixer": "^3.0"
+    },
+    "description": "",
+    "autoload": {
+        "psr-4": {
+            "src\\": "src/",
+            "Framework\\": "Framework/"
+        }
     }
 }

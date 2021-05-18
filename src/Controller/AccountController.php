@@ -21,8 +21,8 @@ class AccountController
     public function loginAction(): void
     {
         if ($this->checkUser() == false) {
-            $this->view->render('Sign In', ['css' => 'style/login.css'], 'auth');
             $this->checkUserData();
+            $this->view->render('Sign In', ['css' => 'style/login.css'], 'auth');
         }
     }
 
@@ -30,15 +30,20 @@ class AccountController
     {
         $this->view->render('Sign Up', ['css' => 'style/registration.css'], 'auth');
     }
+
     public function checkUser(): bool
     {
-        if ($this->auth->isAuth()) {
+        if ($this->auth->isAuth() == true) {
             header('Location:/');
             return true;
         }
         return false;
     }
-    public function checkUserData()
+    public function logoutAction(): void
+    {
+        $this->auth->logOut();
+    }
+    public function checkUserData(): void
     {
         if (isset($_POST['login']) && isset($_POST['pass'])) {
             if ($this->auth->auth($_POST['login'], $_POST['pass'])) {

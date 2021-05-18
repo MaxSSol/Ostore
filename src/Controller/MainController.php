@@ -8,7 +8,6 @@ class MainController
 {
     public array $route;
     public object $view;
-
     public function __construct($route)
     {
         $this->route = $route;

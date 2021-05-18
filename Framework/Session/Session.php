@@ -20,14 +20,17 @@ class Session
 
     public function setId($id): void
     {
-        if (session_id() !== null) {
+        if (isset($id)) {
             session_id($id);
         }
     }
 
     public function cookieExists(): bool
     {
-        return isset($_COOKIE[$this->getName()]);
+        if (isset($_COOKIE[$this->getName()])) {
+            return true;
+        }
+        return false;
     }
 
     public function sessionExists(): bool
@@ -46,7 +49,9 @@ class Session
     public function destroy(): void
     {
         if ($this->sessionExists()) {
-            setcookie($this->getName(), "", time() - 3600);
+            unset($_COOKIE);
+            unset($_SESSION);
+            setcookie($this->getName(), null, -1, '/');
             session_destroy();
         }
     }
@@ -70,18 +75,17 @@ class Session
         }
     }
 
-    public function get($key): void
+    public function get($key): ?string
     {
-        if ($this->contains($key)) {
-            echo $_SESSION[$key];
+        if ($this->contains($key) == true) {
+            return $_SESSION[$key];
         }
+        return null;
     }
 
     public function contains($key): bool
     {
-        if (isset($_SESSION[$key])) {
-            return true;
-        }
+        return isset($_SESSION[$key]);
     }
 
     public function delete($key): void

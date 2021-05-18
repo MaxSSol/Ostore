@@ -7,6 +7,12 @@ use Framework\Router\Router;
 use Framework\Session\Session;
 
 require_once __DIR__ . '/../vendor/autoload.php';
-//checkCookies
+
+$session = new Session();
+$session->setSavePath('/src/config/Session/');
+if ($session->cookieExists() !== false) {
+    $session->start();
+}
+
 $Router = new Router();
 $Router->run();

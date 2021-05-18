@@ -15,7 +15,7 @@ class Auth
     }
     public function isAuth(): bool
     {
-        if (isset($_SESSION['isAuth']) && $_SESSION['isAuth'] == true) {
+        if ($this->session->get('isAuth')) {
             return true;
         }
         return false;
@@ -23,7 +23,6 @@ class Auth
     public function auth($login, $pass): bool
     {
         if ($login == $this->login && $pass == $this->pass) {
-            $this->session->setSavePath('/src/config');
             $this->session->start();
             $this->session->set('isAuth', true);
             $this->session->set('login', $login);
@@ -38,5 +37,6 @@ class Auth
     public function logOut(): void
     {
         $this->session->destroy();
+        header('Location:/');
     }
 }

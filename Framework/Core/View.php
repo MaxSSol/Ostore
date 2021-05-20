@@ -1,16 +1,16 @@
 <?php
+
 namespace Framework\Core;
 
 use Framework\Exception\ViewException;
 
 class View
 {
-    protected $route;
+    protected array $route;
 
     public function __construct($route)
     {
         $this->route = $route;
-
     }
 
     public function render(string $title, array $params = [], string $layout = 'default')

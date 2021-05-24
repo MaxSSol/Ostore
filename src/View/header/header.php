@@ -18,7 +18,12 @@
                 <a class="nav-link" href="#">Cart</a>
             </li>
         </ul>
-        <a class="btn btn-primary me-2" href="/account/login" role="button">Sign In</a>
-        <a class="btn btn-primary" href="/account/registration" role="button">Sign Up</a>
+        <?php if (isset($_SESSION['login'])): ?>
+            <a class="btn btn-primary me-2" href="/account/profile" role="button"><?= $_SESSION['login']?></a>
+            <a class="btn btn-primary" href="/account/logout" role="button">Logout</a>
+        <?php else: ?>
+            <a class="btn btn-primary me-2" href="/account/login" role="button">Sign In</a>
+            <a class="btn btn-primary" href="/account/registration" role="button">Sign Up</a>
+        <?php endif; ?>
     </header>
 </div>

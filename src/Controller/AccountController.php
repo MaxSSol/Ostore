@@ -4,18 +4,21 @@ namespace src\Controller;
 
 use Framework\Authentication\Auth;
 use Framework\Core\View;
+use Monolog\Logger;
+use src\lib\Bot;
 
 class AccountController
 {
     public array $route;
     public object $view;
     protected object $auth;
-
+    protected Logger $logger;
     public function __construct($route)
     {
         $this->route = $route;
         $this->view = new View($route);
         $this->auth = new Auth();
+        $this->logger = new Logger('Ostore.com|Auth');
     }
 
     public function loginAction(): void
@@ -47,6 +50,16 @@ class AccountController
     {
         if (isset($_POST['login']) && isset($_POST['pass'])) {
             if ($this->auth->auth($_POST['login'], $_POST['pass'])) {
+                $this->logger->pushHandler(
+                    new Bot(
+                        '1783253669:AAEaIT7tdG7DnOuKrmn2t-NpbpQUrB5bq6M',
+                        '@composerlogger'
+                    )
+                );
+                $this->logger->info(
+                    'User: ' . $_POST['login'] . ' is authorized ',
+                    ['ua' => $_SERVER['HTTP_USER_AGENT']]
+                );
                 header('Location:/');
             }
         }

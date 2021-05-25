@@ -9,16 +9,19 @@ use src\lib\Bot;
 
 class AccountController
 {
-    public array $route;
+    public string $route;
     public object $view;
     protected object $auth;
     protected Logger $logger;
-    public function __construct($route)
+    protected array $getParam;
+    public function __construct($route, $getParam)
     {
+        $this->getParam = $getParam;
         $this->route = $route;
         $this->view = new View($route);
         $this->auth = new Auth();
         $this->logger = new Logger('Ostore.com|Auth');
+        $this->view = new View($this->route);
     }
 
     public function loginAction(): void

@@ -6,14 +6,15 @@ use Framework\Core\View;
 
 class MainController
 {
-    public array $route;
+    public string $route;
     public object $view;
-    public function __construct($route)
+    public array $getParam;
+    public function __construct($route, $getParam)
     {
         $this->route = $route;
-        $this->view = new View($route);
+        $this->getParam = $getParam;
+        $this->view = new View($this->route);
     }
-
     public function indexAction(): void
     {
         $this->view->render('Home', ['css' => 'style/main.css']);

@@ -1,16 +1,13 @@
 <?php
 
 return [
-    '/' => [
-        'controller' => 'main',
-        'action' => 'index'
-    ],
-    '/account/login' => [
-        'controller' => 'account',
-        'action' => 'login'
-    ],
-    '/account/logout' => [
-        'controller' => 'account',
-        'action' => 'logout'
-    ]
+    /**
+     * url => '/' => controller(main)/action(index)
+     * url => '/product' => controller(product)/action(show)
+     * url => '/product/([a-z]+)/([0-9]+)' => controller(product)/action(view)/parameters($1)/$parameters($2)
+     */
+    '/' => 'main/index',
+    '/account/login' => '/account/login',
+    '/account/logout' => '/account/logout',
+    '/product/([a-z]+)/([0-9]+)' => '/product/view/$1/$2'
 ];

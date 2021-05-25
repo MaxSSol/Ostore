@@ -4,51 +4,69 @@ namespace Framework\Router;
 
 class Router
 {
-    public array $routes = [];
-    public array $params = [];
+    protected array $routes = [];
+    protected string $params;
+    protected string $controllerName;
+    protected string $actionName;
+    protected array $getParameters = [];
 
     public function __construct()
     {
-        $routes = require __DIR__ . '/../../src/config/routes.php';
-        foreach ($routes as $key => $param) {
-            $this->addRoutes($key, $param);
+        $arr = require_once __DIR__ . '/../../src/config/routes.php';
+        foreach ($arr as $route => $param) {
+            $this->addRoute($route, $param);
         }
     }
-
-    public function addRoutes($route, $params): void
+    public function addRoute($route, $params)
     {
-        $route = '#^' . $route . '$#';//key => [#^/$#]
-        $this->routes[$route] = $params;//arr => [#^/$#] => [controller/action]
+        $this->routes[$route] = $params;
     }
-
     public function checkMatch(): bool
     {
         $url = trim($_SERVER['REQUEST_URI']);
-        foreach ($this->routes as $route => $params) {
-            if (preg_match($route, $url, $matches)) {
-                $this->params = $params;
-                return true;
+        foreach ($this->routes as $route => $param) {
+            if (preg_match('#^' . $route . '$#', $url, $matches)) {
+                if (count($matches) == 1) {
+                    $this->internalUrl($route, $param, $url);
+                    return true;
+                } else {
+                    $this->internalUrlWithParams($route, $param, $url);
+                    return true;
+                }
             }
         }
+        return false;
     }
-
-    public function run()
+    public function internalUrl($route, $param, $url): void
     {
-        if ($this->checkMatch()) {
-            $path = 'src\\Controller\\' . ucfirst($this->params['controller']) . 'Controller';
-            if (class_exists($path)) {
-                $action = $this->params['action'] . 'Action';
-                if (method_exists($path, $action)) {
-                    $controller = new $path($this->params);
-                    $controller->$action();
-                } else {
-                    //throw new RouterException
-                }
-            } else {
-                //throw new RouterException
+        $this->params = $param;
+        $itemUrl = array_filter(explode('/', $param));
+        $this->controllerName = ucfirst(array_shift($itemUrl)) . 'Controller';
+        $this->actionName = array_shift($itemUrl) . 'Action';
+    }
+    public function internalUrlWithParams($route, $param, $url): void
+    {
+        $internalUrl = preg_replace('#^' . $route . '$#', $param, $url);
+        $itemUrl = array_filter(explode('/', $internalUrl));
+        $this->params = $itemUrl[1] . '/' . $itemUrl[2];
+        $this->controllerName = ucfirst(array_shift($itemUrl)) . 'Controller';
+        $this->actionName = array_shift($itemUrl) . 'Action';
+        $parameters = $itemUrl;
+        $this->getParameters = $itemUrl;
+    }
+    public function run(): bool
+    {
+        if ($this->checkMatch() !== false) {
+            $path = 'src\Controller\\' . $this->controllerName;
+            if (class_exists($path) && method_exists($path, $this->actionName)) {
+                $action = $this->actionName;
+                $controller = new $path($this->params, $this->getParameters);
+                $controller->$action();
+                return true;
             }
         } else {
-            //throw new RouterException
+            echo '<h1 style="text-align: center">Bad request, url not found!</h1>';
+            return false;
         }
     }
 }

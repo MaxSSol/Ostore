@@ -6,9 +6,9 @@ use Framework\Exception\ViewException;
 
 class View
 {
-    protected array $route;
+    protected string $route;
 
-    public function __construct($route)
+    public function __construct(string $route)
     {
         $this->route = $route;
     }
@@ -21,7 +21,8 @@ class View
             }
 
             //$path = __DIR__.'/../View/'.$this->route.'.php'; include route
-            $path = __DIR__ . '/../../src/View/' . $this->route['controller'] . '/' . $this->route['action'] . '.php';
+//            $path = __DIR__ . '/../../src/View/' . $this->route['controller'] . '/' . $this->route['action'] . '.php';
+            $path = __DIR__ . '/../../src/View/' . $this->route . '.php';
             if (file_exists($path)) {
                 ob_start();
                 require_once $path;
@@ -31,10 +32,8 @@ class View
                 throw new ViewException();
             }
         } catch (ViewException $e) {
-            $route = ['controller' => 'error', 'action' => 'error404'];
-            $errorView = new View($route);
+            $errorView = new View('error/error404');
             $errorView->render('Error', ['code' => $e->getCode(), 'message' => $e->getMessage()], 'error');
         }
     }
 }
-

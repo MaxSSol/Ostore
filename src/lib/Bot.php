@@ -2,8 +2,8 @@
 
 namespace src\lib;
 
-use Monolog\Handler\MyTelegramBotHandler;
+use src\Logger\TelegramHandler;
 
-class Bot extends MyTelegramBotHandler
+class Bot extends TelegramHandler
 {
 }

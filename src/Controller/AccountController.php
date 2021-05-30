@@ -56,7 +56,8 @@ class AccountController
                 $this->logger->pushHandler(
                     new Bot(
                         '1783253669:AAEaIT7tdG7DnOuKrmn2t-NpbpQUrB5bq6M',
-                        '@composerlogger'
+                        '@composerlogger',
+                        Logger::INFO
                     )
                 );
                 $this->logger->info(

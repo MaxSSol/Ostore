@@ -13,6 +13,5 @@ $session->setSavePath('/src/config/Session/');
 if ($session->cookieExists() !== false) {
     $session->start();
 }
-
 $Router = new Router();
 $Router->run();

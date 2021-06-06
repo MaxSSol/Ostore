@@ -1,20 +1,22 @@
 <?php
 
+declare(strict_types=1);
+
 namespace src\Controller;
+
+use Framework\Core\View;
 
 class ProductController
 {
-    private string $route;
-    private array $params;
-    public function __construct($route, $params)
+    public array $params;
+    private View $view;
+    public function __construct(array $params = [])
     {
-        $this->route = $route;
         $this->params = $params;
+        $this->view = new View();
     }
     public function viewAction()
     {
-        var_dump($this->route);
-        echo '<br/>';
-        var_dump($this->params);
+        $this->view->render('show/show', 'Products', ['css' => 'style/show.css']);
     }
 }

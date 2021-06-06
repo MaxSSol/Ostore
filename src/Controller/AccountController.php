@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace src\Controller;
 
 use Framework\Authentication\Auth;
@@ -9,32 +11,29 @@ use src\lib\Bot;
 
 class AccountController
 {
-    public string $route;
+    private array $params;
     public object $view;
     protected object $auth;
     protected Logger $logger;
-    protected array $getParam;
-    public function __construct($route, $getParam)
+    public function __construct(array $params = [])
     {
-        $this->getParam = $getParam;
-        $this->route = $route;
-        $this->view = new View($route);
+        $this->params = $params;
         $this->auth = new Auth();
         $this->logger = new Logger('Ostore.com|Auth');
-        $this->view = new View($this->route);
+        $this->view = new View();
     }
 
     public function loginAction(): void
     {
         if ($this->checkUser() == false) {
             $this->checkUserData();
-            $this->view->render('Sign In', ['css' => 'style/login.css'], 'auth');
+            $this->view->render('account/login', 'Sign In', ['css' => 'style/login.css'], 'auth');
         }
     }
 
     public function registrationAction(): void
     {
-        $this->view->render('Sign Up', ['css' => 'style/registration.css'], 'auth');
+        $this->view->render('account/login', 'Sign Up', ['css' => 'style/registration.css'], 'auth');
     }
 
     public function checkUser(): bool
@@ -51,8 +50,8 @@ class AccountController
     }
     public function checkUserData(): void
     {
-        if (isset($_POST['login']) && isset($_POST['pass'])) {
-            if ($this->auth->auth($_POST['login'], $_POST['pass'])) {
+        if (isset($this->params)) {
+            if ($this->auth->auth($this->params)) {
                 $this->logger->pushHandler(
                     new Bot(
                         '1783253669:AAEaIT7tdG7DnOuKrmn2t-NpbpQUrB5bq6M',
@@ -61,7 +60,7 @@ class AccountController
                     )
                 );
                 $this->logger->info(
-                    'User: ' . $_POST['login'] . ' is authorized ',
+                    'User: ' . $this->params['user'] . ' is authorized ',
                     ['ua' => $_SERVER['HTTP_USER_AGENT']]
                 );
                 header('Location:/');

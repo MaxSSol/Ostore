@@ -20,13 +20,16 @@ class Auth
         }
         return false;
     }
-    public function auth($login, $pass): bool
+    public function auth(array $params): bool
     {
-        if ($login == $this->login && $pass == $this->pass) {
-            $this->session->start();
-            $this->session->set('isAuth', true);
-            $this->session->set('login', $login);
-            return true;
+        if (isset($params['login']) && isset($params['pass'])) {
+            if ($params['login'] == $this->login && $params['pass'] == $this->pass) {
+                $this->session->start();
+                $this->session->set('isAuth', true);
+                $this->session->set('login', $params['login']);
+                return true;
+            }
+            return false;
         }
         return false;
     }

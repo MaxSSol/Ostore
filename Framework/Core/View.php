@@ -6,23 +6,13 @@ use Framework\Exception\ViewException;
 
 class View
 {
-    protected string $route;
-
-    public function __construct(string $route)
-    {
-        $this->route = $route;
-    }
-
-    public function render(string $title, array $params = [], string $layout = 'default')
+    public function render(string $pathToView, string $title, array $params = [], string $layout = 'default')
     {
         try {
             if (isset($params)) {
                 extract($params);
             }
-
-            //$path = __DIR__.'/../View/'.$this->route.'.php'; include route
-//            $path = __DIR__ . '/../../src/View/' . $this->route['controller'] . '/' . $this->route['action'] . '.php';
-            $path = __DIR__ . '/../../src/View/' . $this->route . '.php';
+            $path = __DIR__ . '/../../src/View/' . $pathToView . '.php';
             if (file_exists($path)) {
                 ob_start();
                 require_once $path;
@@ -32,8 +22,14 @@ class View
                 throw new ViewException();
             }
         } catch (ViewException $e) {
-            $errorView = new View('error/error404');
-            $errorView->render('Error', ['code' => $e->getCode(), 'message' => $e->getMessage()], 'error');
+            $errorView = new View();
+            $errorView->render(
+                'error/error404',
+                'Error',
+                ['code' => $e->getCode(),
+                    'message' => $e->getMessage()],
+                'error'
+            );
         }
     }
 }

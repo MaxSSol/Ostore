@@ -33,10 +33,13 @@ class AccountController
 
     public function registrationAction(): void
     {
-        $this->view->render('account/login', 'Sign Up', ['css' => 'style/registration.css'], 'auth');
+        if ($this->checkUser() == false) {
+            $this->registrationUser();
+            $this->view->render('account/registration', 'Sign Up', ['css' => 'style/registration.css'], 'auth');
+        }
     }
 
-    public function checkUser(): bool
+    private function checkUser(): bool
     {
         if ($this->auth->isAuth() == true) {
             header('Location:/');
@@ -48,7 +51,18 @@ class AccountController
     {
         $this->auth->logOut();
     }
-    public function checkUserData(): void
+    private function registrationUser(): bool
+    {
+        if (isset($this->params)) {
+            if ($this->auth->registration($this->params) == true) {
+                header('Location:/account/profile');
+                return true;
+            }
+            return false;
+        }
+        return false;
+    }
+    private function checkUserData(): void
     {
         if (isset($this->params)) {
             if ($this->auth->auth($this->params)) {
@@ -60,7 +74,7 @@ class AccountController
                     )
                 );
                 $this->logger->info(
-                    'User: ' . $this->params['user'] . ' is authorized ',
+                    'User: ' . $this->auth->getLogin() . ' is authorized ',
                     ['ua' => $_SERVER['HTTP_USER_AGENT']]
                 );
                 header('Location:/');

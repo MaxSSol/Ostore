@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace src\Controller;
 
 use Framework\Core\View;
+use Framework\DataMapper\ProductMapper;
 
 class MainController
 {
@@ -17,6 +18,8 @@ class MainController
     }
     public function indexAction(): void
     {
-        $this->view->render('main/index', 'Home', ['css' => 'style/main.css']);
+        $productMapper = new ProductMapper();
+        $product = $productMapper->getProductById(1);
+        $this->view->render('main/index', 'Home', ['css' => 'style/main.css', 'product' => $product]);
     }
 }

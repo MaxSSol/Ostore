@@ -21,14 +21,18 @@ class ProductController
     public function viewAction(): void
     {
         $products = $this->productMapper->getProductList();
-        $this->view->render('show/show', 'Products', ['css' => 'style/show.css', 'products' => $products]);
+        $this->view->render('show/show', 'Products', ['css' => 'style/showProducts.css', 'products' => $products]);
     }
     public function viewProductAction(): void
     {
         if ($this->checkParams()) {
             $id = (int)$this->params['id'];
             $product = $this->productMapper->getProductById($id);
-            $this->view->render('show/product', 'Product' . $product->getTitle(), ['product' => $product]);
+            $this->view->render(
+                'show/product',
+                $product->getTitle(),
+                ['css' => 'style/product.css', 'product' => $product]
+            );
         } else {
             echo 'Product not found';
         }

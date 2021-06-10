@@ -20,6 +20,6 @@ class MainController
     {
         $productMapper = new ProductMapper();
         $product = $productMapper->getProductById(1);
-        $this->view->render('main/index', 'Home', ['css' => 'style/main.css', 'product' => $product]);
+        $this->view->render('main/index', 'Home', ['css' => 'style/mainPage.css', 'product' => $product]);
     }
 }

@@ -36,7 +36,7 @@
                     <p class="card-text"><?php echo $product->getTitle();?></p>
                     <p class="card-text"><?php echo 'Price: $' . $product->getPrice();?></p>
                     <div class="card-btn d-flex justify-content-center">
-                        <a class="btn btn-primary" href="/product?id=<?= $product->getId();?>" role="button">View</a>
+                        <a class="btn btn-primary me-3" href="/product?id=<?= $product->getId();?>" role="button">View</a>
                         <a class="btn btn-primary" href="#" role="button">Add to Cart</a>
                     </div>
                 </div>

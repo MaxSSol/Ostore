@@ -14,14 +14,15 @@
             <li class="nav-item">
                 <a class="nav-link" href="/about">About Us</a>
             </li>
+        <?php if (isset($_SESSION['login'])): ?>
             <li class="nav-item">
                 <a class="nav-link" href="/cart">Cart</a>
             </li>
         </ul>
-        <?php if (isset($_SESSION['login'])): ?>
             <a class="btn btn-primary me-2 p-2" href="/account/profile" role="button"><?= $_SESSION['login']?></a>
             <a class="btn btn-primary p-2" href="/account/logout" role="button">Logout</a>
         <?php else: ?>
+        </ul>
             <a class="btn btn-primary me-2 p-2" href="/account/login" role="button">Sign In</a>
             <a class="btn btn-primary p-2" href="/account/registration" role="button">Sign Up</a>
         <?php endif; ?>

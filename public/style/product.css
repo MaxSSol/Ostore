@@ -9,13 +9,28 @@ body{
     margin: 0 auto;
 }
 .description-inner{
-    height: 550px;
+    height: 100%;
     width: 100%;
-    background-color: #eee;
     margin-bottom: 25px;
+}
+.description-title{
+    margin: 0 auto;
+    width: 900px;
+    font-size: 18px;
+}
+.product-price{
+    font-size: 18px;
+}
+.product-amount{
+    font-size: 18px;
 }
 .footer{
     height: 150px;
     width: 100%;
     background-color: #eee;
+}
+.footer-icon{
+    margin-right: 10px;
+    height: 35px;
+    width: 35px;
 }

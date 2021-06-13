@@ -25,4 +25,6 @@ $router->post('/account/registration', [AccountController::class, 'registrationA
 $router->get('/account/logout', [AccountController::class, 'logoutAction']);
 $router->get('/products', [ProductController::class, 'viewAction']);
 $router->get('/product', [ProductController::class, 'viewProductAction']);
+$router->get('/get/products', [ProductController::class, 'getProducts']);
+$router->get('/get/product', [ProductController::class, 'getProduct']);// /get/product?id=
 $router->run();

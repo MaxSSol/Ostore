@@ -5,22 +5,21 @@ declare(strict_types=1);
 namespace src\Controller;
 
 use Framework\Authentication\Auth;
-use Framework\Core\View;
+use Framework\Core\Controller;
 use Monolog\Logger;
 use src\lib\Bot;
 
-class AccountController
+class AccountController extends Controller
 {
     private array $params;
-    public object $view;
-    protected object $auth;
+    protected Auth $auth;
     protected Logger $logger;
     public function __construct(array $params = [])
     {
+        parent::__construct();
         $this->params = $params;
         $this->auth = new Auth();
         $this->logger = new Logger('Ostore.com|Auth');
-        $this->view = new View();
     }
 
     public function loginAction(): void

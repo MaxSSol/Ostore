@@ -8,7 +8,6 @@ use Framework\Core\View;
 use Framework\DataMapper\CategoryMapper;
 use Framework\DataMapper\CategoryProductMapper;
 use Framework\DataMapper\ProductMapper;
-use Framework\DataMapper\ProductPhotoMapper;
 
 class ProductController
 {
@@ -52,7 +51,7 @@ class ProductController
     }
     public function viewProductByCategory()
     {
-        if(isset($this->params['category'])) {
+        if (isset($this->params['category'])) {
             $products = $this->categoryProductMapper->getProductsByCategory(ucfirst($this->params['category']));
             $categories = $this->categoryMapper->getCategoriesList();
             $this->view->render(

@@ -27,7 +27,7 @@ class AccountController
     {
         if ($this->checkUser() == false) {
             $this->checkUserData();
-            $this->view->render('account/login', 'Sign In', ['css' => 'style/login.css'], 'auth');
+            $this->view->render('account/login', 'Sign In', ['css' => '../style/loginPage.css'], 'auth');
         }
     }
 
@@ -35,7 +35,7 @@ class AccountController
     {
         if ($this->checkUser() == false) {
             $this->registrationUser();
-            $this->view->render('account/registration', 'Sign Up', ['css' => 'style/registration.css'], 'auth');
+            $this->view->render('account/registration', 'Sign Up', ['css' => '../style/registration.css'], 'auth');
         }
     }
 
@@ -54,7 +54,18 @@ class AccountController
     private function registrationUser(): bool
     {
         if (isset($this->params)) {
-            if ($this->auth->registration($this->params) == true) {
+            if ($this->auth->registration($this->params)) {
+                $this->logger->pushHandler(
+                    new Bot(
+                        '1783253669:AAEaIT7tdG7DnOuKrmn2t-NpbpQUrB5bq6M',
+                        '@composerlogger',
+                        Logger::INFO
+                    )
+                );
+                $this->logger->info(
+                    'User: ' . $this->auth->getLogin() . ' is registered ',
+                    ['ua' => $_SERVER['HTTP_USER_AGENT']]
+                );
                 header('Location:/account/profile');
                 return true;
             }

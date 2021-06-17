@@ -6,6 +6,7 @@ ini_set('display_errors', 1);
 use Framework\Router\Router;
 use Framework\Session\Session;
 use src\Controller\AccountController;
+use src\Controller\CartController;
 use src\Controller\MainController;
 use src\Controller\ProductController;
 
@@ -24,5 +25,11 @@ $router->get('/account/registration', [AccountController::class, 'registrationAc
 $router->post('/account/registration', [AccountController::class, 'registrationAction']);
 $router->get('/account/logout', [AccountController::class, 'logoutAction']);
 $router->get('/products', [ProductController::class, 'viewAction']);
+$router->get('/products/category', [ProductController::class, 'viewProductByCategory']);
 $router->get('/product', [ProductController::class, 'viewProductAction']);
+$router->get('/cart', [CartController::class, 'viewCartAction']);
+$router->get('/cart/add', [CartController::class, 'addProductToCart']);
+$router->get('/cart/d', [CartController::class, 'deleteProductFromCart']);
+$router->get('/order', [\src\Controller\OrderController::class, 'orderAction']);
+$router->post('/order', [\src\Controller\OrderController::class, 'orderAction']);
 $router->run();

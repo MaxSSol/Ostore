@@ -6,10 +6,9 @@ use Framework\Authentication\Auth;
 use Framework\DataMapper\CartMapper;
 use Framework\DataMapper\OrderStatusMapper;
 use Framework\DataMapper\UserMapper;
-use src\Model\Cart;
-use src\Model\OrderStatus;
+use Framework\Core\Controller;
 
-class OrderController
+class OrderController extends Controller
 {
     private array $params;
     private CartMapper $cartMapper;
@@ -19,6 +18,7 @@ class OrderController
 
     public function __construct(array $params)
     {
+        parent::__construct();
         $this->cartMapper = new CartMapper();
         $this->auth = new Auth();
         $this->userMapper = new UserMapper();

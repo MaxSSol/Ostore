@@ -3,27 +3,26 @@
 namespace src\Controller;
 
 use Framework\Authentication\Auth;
-use Framework\Core\View;
+use Framework\Core\Controller;
 use Framework\DataMapper\CartMapper;
 use Framework\DataMapper\ProductMapper;
 use Framework\DataMapper\UserMapper;
 use src\Model\Cart;
 
-class CartController
+class CartController extends Controller
 {
     private CartMapper $cartMapper;
     private UserMapper $userMapper;
     private Auth $auth;
     public array $params;
-    private View $view;
 
     public function __construct(array $params = [])
     {
+        parent::__construct();
         $this->userMapper = new UserMapper();
         $this->auth = new Auth();
         $this->cartMapper = new CartMapper();
         $this->params = $params;
-        $this->view = new View();
     }
 
     public function viewCartAction()

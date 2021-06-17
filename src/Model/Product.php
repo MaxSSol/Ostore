@@ -4,49 +4,29 @@ namespace src\Model;
 
 class Product
 {
-    public ?int $id;
-    public string $title;
-    public string $description;
-    public int $price;
-    public int $amount;
-    public int $producerId;
-    public string $createdAt;
-    public string $updateAt;
+    protected ?int $id;
+    protected string $title;
+    protected string $description;
+    protected int $price;
+    protected int $amount;
+    protected string $photo;
+    protected int $producerId;
+    protected string $createdAt;
+    protected string $updateAt;
+    /**
+     * @return string
+     */
+    public function getProductPhoto(): string
+    {
+        return $this->photo;
+    }
 
     /**
-     * Product constructor.
-     * @param int $id
-     * @param string $title
-     * @param string $description
-     * @param int $price
-     * @param int $amount
-     * @param int $producerId
-     * @param string $createdAt
-     * @param string $updateAt
+     * @param string $photo
      */
-    public function __construct(
-        string $title,
-        string $description,
-        int $price,
-        int $amount,
-        int $producerId,
-        int $id = null,
-        string $createdAt = '',
-        string $updateAt = ''
-    ) {
-        $this->id = $id;
-        $this->title = $title;
-        $this->description = $description;
-        $this->price = $price;
-        $this->amount = $amount;
-        $this->producerId = $producerId;
-        if ($createdAt == '' && $updateAt == '') {
-            $this->createdAt = (string) date('Y-m-d H:i:s');
-            $this->updateAt = (string) date('Y-m-d H:i:s');
-        } else {
-            $this->createdAt = $createdAt;
-            $this->updateAt = $updateAt;
-        }
+    public function setProductPhoto(string $photo): void
+    {
+        $this->photo = $photo;
     }
 
     /**
@@ -68,7 +48,7 @@ class Product
     /**
      * @return string
      */
-    public function getTitle(): string
+    public function getTitle(): ?string
     {
         return $this->title;
     }
@@ -84,7 +64,7 @@ class Product
     /**
      * @return string
      */
-    public function getDescription(): string
+    public function getDescription(): ?string
     {
         return $this->description;
     }
@@ -100,7 +80,7 @@ class Product
     /**
      * @return int
      */
-    public function getPrice(): int
+    public function getPrice(): ?int
     {
         return $this->price;
     }
@@ -116,7 +96,7 @@ class Product
     /**
      * @return int
      */
-    public function getAmount(): int
+    public function getAmount(): ?int
     {
         return $this->amount;
     }
@@ -176,20 +156,33 @@ class Product
     {
         $this->updateAt = $updateAt;
     }
-
-    public static function getDataFromProductMapper(array $data): self
+    public function getDataFromProductMapper(array $data): Product
     {
-        if (isset($data)) {
-            return new self(
-                $data['title'],
-                $data['description'],
-                $data['price'],
-                $data['amount'],
-                $data['producer_id'],
-                $data['id'],
-                $data['created_at'],
-                $data['update_at']
-            );
+        $product = new Product();
+        if (isset($data['id'])) {
+            $product->setId($data['id']);
         }
+        if (isset($data['title'])) {
+            $product->setTitle($data['title']);
+        }
+        if (isset($data['description'])) {
+            $product->setDescription($data['description']);
+        }
+        if (isset($data['price'])) {
+            $product->setPrice($data['price']);
+        }
+        if (isset($data['amount'])) {
+            $product->setAmount($data['amount']);
+        }
+        if (isset($data['created_at'])) {
+            $product->setCreatedAt($data['created_at']);
+        }
+        if (isset($data['update_at'])) {
+            $product->setCreatedAt($data['update_at']);
+        }
+        if (isset($data['photo'])) {
+            $product->setProductPhoto($data['photo']);
+        }
+        return $product;
     }
 }

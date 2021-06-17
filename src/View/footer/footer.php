@@ -3,12 +3,10 @@
         <div class="row">
             <div class="col-4 d-flex justify-content-center">
                 <ul class="list-unstyled text-small ms-4">
-                    <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Top-products</a></li>
-                    <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Delivery</a></li>
-                    <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Sign In</a></li>
-                    <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Stuff for developers</a></li>
-                    <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Another one</a></li>
-                    <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Products</a></li>
+                    <li class="mb-1"><a class="link-secondary text-decoration-none" href="/products">Top-products</a></li>
+                    <li class="mb-1"><a class="link-secondary text-decoration-none" href="/contact/delivery">Delivery</a></li>
+                    <li class="mb-1"><a class="link-secondary text-decoration-none" href="/account/login">Sign In</a></li>
+                    <li class="mb-1"><a class="link-secondary text-decoration-none" href="/products">Products</a></li>
                 </ul>
             </div>
             <div class="col-4 d-flex justify-content-center">

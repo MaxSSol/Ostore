@@ -4,13 +4,23 @@
             <div class="carousel-indicators">
                 <button type="button" data-bs-target="#carouselIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
                 <button type="button" data-bs-target="#carouselIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
             </div>
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img class="d-block w-100" src="https://i.ibb.co/MZh9TRp/slider1.png" alt="test1">
+                    <a href="/products">
+                    <img class="d-block w-100" src="https://i.imgur.com/WyH9fUs.png" alt="test1">
+                    </a>
                 </div>
                 <div class="carousel-item">
-                    <img class="d-block w-100" src="https://i.ibb.co/5hpkwm6/slider2.png" alt="test2">
+                    <a href="/products">
+                    <img class="d-block w-100" src="https://i.imgur.com/Aqsiuk0.png" alt="Tools">
+                    </a>
+                </div>
+                <div class="carousel-item">
+                    <a href="/products">
+                    <img class="d-block w-100" src="https://i.imgur.com/ozrJHd4.png" alt="Tools">
+                    </a>
                 </div>
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselIndicators" data-bs-slide="prev">
@@ -27,17 +37,17 @@
 <section class="top-products mb-5">
     <p class="top-products-title d-flex justify-content-center mb-5">Only in Ostore</p>
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3">
-        <?php for($i = 1; $i <= 1; $i++):?>
+        <?php for($i = 1; $i <= 8; $i++):?>
             <div class="col">
                 <div class="card">
-                    <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Product</text></svg>
+                    <img src="<?= $products[$i]->getProductPhoto();?>" alt="<?= $products[$i]->getTitle();?>"/>
                 </div>
                 <div class="card-body">
-                    <p class="card-text"><?php echo $product->getTitle();?></p>
-                    <p class="card-text"><?php echo 'Price: $' . $product->getPrice();?></p>
+                    <p class="card-text"><?= $products[$i]->getTitle();?></p>
+                    <p class="card-text"><?= 'Price: $' . $products[$i]->getPrice();?></p>
                     <div class="card-btn d-flex justify-content-center">
-                        <a class="btn btn-primary me-3" href="/product?id=<?= $product->getId();?>" role="button">View</a>
-                        <a class="btn btn-primary" href="#" role="button">Add to Cart</a>
+                        <a class="btn btn-primary me-3" href="/product?id=<?= $products[$i]->getId();?>" role="button">View</a>
+                        <a class="btn btn-primary" href="/cart/add?id=<?= $products[$i]->getId();?>" role="button">Add to Cart</a>
                     </div>
                 </div>
             </div>

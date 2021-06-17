@@ -36,6 +36,7 @@ class Auth
                 $this->session->set('login', $user->getLogin());
                 return true;
             }
+            $_SESSION['errorMessage'] = 'Check your data!';
             return false;
         }
         return false;
@@ -43,23 +44,33 @@ class Auth
     public function registration(array $params): bool
     {
         if ($params !== []) {
-            $user = new User(
-                null,
-                $params['firstName'],
-                $params['lastName'],
-                $params['email'],
-                $params['login'],
-                sha1($params['password']),
-                $params['city'],
-                $params['address']
-            );
-            $result = $this->userMapper->insert($user);
-            if ($result == null) {
-                $this->session->start();
-                $this->session->set('isAuth', true);
-                $this->session->set('login', $user->getLogin());
-                return true;
+            if (
+                preg_match('/^[A-Za-z]{4,50}$/', $params['firstName']) &&
+                preg_match('/^[A-Za-z]{4,50}$/', $params['lastName']) &&
+                preg_match('/^[A-Za-z0-9][A-Za-z0-9-_]+[A-Za-z0-9]$/is', $params['login']) &&
+                preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^\w\s]).{6,}/', $params['password']) &&
+                preg_match('/^[A-Za-z]{4,50}$/', $params['city']) &&
+                preg_match('/^[A-Za-z0-9]{4,50}$/', $params['city'])
+            ) {
+                $user = new User(
+                    null,
+                    $params['firstName'],
+                    $params['lastName'],
+                    $params['email'],
+                    $params['login'],
+                    sha1($params['password']),
+                    $params['city'],
+                    $params['address']
+                );
+                $result = $this->userMapper->insert($user);
+                if ($result == null) {
+                    $this->session->start();
+                    $this->session->set('isAuth', true);
+                    $this->session->set('login', $user->getLogin());
+                    return true;
+                }
             }
+            $_SESSION['errorMessage'] = 'Invalid data';
             return false;
         }
         return false;

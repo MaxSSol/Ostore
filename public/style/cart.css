@@ -2,10 +2,9 @@ body{
     margin:0 auto;
 }
 .cart-inner{
-    padding: 30px 0;
     width: 100%;
     background-color: #fff;
-    margin-bottom: 25px;
+    margin-bottom: 15px;
 }
 .cart-product-img{
     height: 96px;
@@ -13,11 +12,31 @@ body{
     margin-right: 100px;
 }
 .cart-product{
-    border: #eeeeee 2px solid;
+    border: #9a9999 2px solid;
+    width: 800px;
     padding: 15px;
 }
+.cart-product-title{
+    width: 400px;
+}
 .cart-product>ul{
-    margin-right: 100px;
+    margin:0 auto;
+}
+.cart-empty{
+    width: 100%;
+    height: 600px;
+    margin-bottom: 15px;
+}
+.cart-empty>p{
+    font-size: 25px;
+}
+.cart-quantity{
+    width: 105px;
+}
+.cart-quantity::placeholder{
+    font-size: 14px;
+    font-weight: 700;
+    color: black;
 }
 .footer{
     height: 200px;

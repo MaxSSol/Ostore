@@ -10,6 +10,13 @@
             <input type="email" class="form-control mb-2" placeholder="Email" name="email">
             <input type="password" class="form-control mb-3" placeholder="Password" name="password">
             <button type="submit" class="btn btn-primary">Sign Up</button>
+            <p>
+                <?php if (isset($_SESSION['errorMessage'])) {
+                    echo $_SESSION['errorMessage'];
+                    unset($_SESSION['errorMessage']);
+                }
+                ?>
+            </p>
         </form>
     </div>
 </main>

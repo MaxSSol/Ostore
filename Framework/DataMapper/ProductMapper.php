@@ -3,28 +3,34 @@
 namespace Framework\DataMapper;
 
 use Framework\DataMapper\DataMapper;
-use src\lib\Database;
+use ReflectionObject;
 use src\Model\Product;
 
 class ProductMapper extends DataMapper
 {
+    private Product $product;
+    public function __construct()
+    {
+        parent::__construct();
+        $this->product = new Product();
+    }
+
     public function getProductById(int $id): ?Product
     {
         $params = [':id' => $id];
-        $sql = $this->query->select() .
-            $this->query->from($this->getTableName()) .
-            $this->query->where(['id'], '=');
+        $sql ="select p.id,title,p.description,price,amount,p.created_at,p.update_at, pP.photo FROM products p
+        JOIN productPhotos pP on p.id = pP.product_id WHERE p.id=:id AND position = ''";
         $result = $this->db->query($sql, $params);
         return $result ? $this->mapToProduct($result[0]) : null;
     }
     public function getProductList(): array
     {
-        $sql = $this->query->select() .
-        $this->query->from($this->getTableName());
+        $sql = "select p.id,title,price,amount,p.created_at,p.update_at, pP.photo FROM products p
+        JOIN productPhotos pP on p.id = pP.product_id WHERE position = 'main'";
         $result = $this->db->query($sql);
         $productArr = [];
         for ($i = 0; $i < count($result); $i++) {
-            $productArr[] = Product::getDataFromProductMapper($result[$i]);
+            $productArr[] = $this->mapToProduct($result[$i]);
         }
         return $productArr;
     }
@@ -33,15 +39,18 @@ class ProductMapper extends DataMapper
         $paramToQuery = [];
         $valueToQuery = [];
         $paramToDb = [];
-        array_filter((array)$product);
-        foreach ($product as $key => $value) {
-            if ($key !== 'id') {
-                $param = $this->transformToNormalFormat($key);
-                $paramKeyFormat = ':' . $param;
-                $paramToQuery[] = $param;
-                $valueToQuery[] = $paramKeyFormat;
-                $paramToDb[$paramKeyFormat] = $value;
-            }
+        $param = [
+            $this->transformToDbFormat('title') => $product->getTitle(),
+            $this->transformToDbFormat('description') => $product->getDescription(),
+            $this->transformToDbFormat('price') => $product->getPrice(),
+            $this->transformToDbFormat('amount') => $product->getAmount(),
+            $this->transformToDbFormat('producerId') => $product->getProducerId()
+        ];
+        foreach ($param as $key => $value) {
+            $paramToQuery[] = $key;
+            $bindParam = ':' . $key;
+            $valueToQuery[] = $bindParam;
+            $paramToDb[$bindParam] = $value;
         }
         $sql = 'INSERT INTO ' .
             $this->getTableName() .
@@ -54,20 +63,20 @@ class ProductMapper extends DataMapper
     }
     public function update(Product $product)
     {
-        $paramToQuery = [];
-        $valueToQuery = [];
-        $paramToDb = [];
         $id = $product->getId();
-        array_filter((array)$product);
-        foreach ($product as $key => $value) {
-            if ($key !== 'id' && $key !== 'createdAt') {
-                $param = $this->transformToNormalFormat($key);
-                $paramKeyFormat = ':' . $param;
-                $paramToQuery[] = $param . '=' . $paramKeyFormat;
-                $paramToDb[$paramKeyFormat] = $value;
-            }
-        }
+        $param = [
+            'title' => $product->getTitle(),
+            'description' => $product->getDescription(),
+            'price' => $product->getPrice(),
+            'amount' => $product->getAmount(),
+        ];
         $paramToDb[':id'] = $id;
+        $paramToQuery = [];
+        foreach ($param as $key => $value) {
+            $paramToQuery[] = $key . '=:' . $key;
+            $bindParam = ':' . $key;
+            $paramToDb[$bindParam] = $value;
+        }
         $sql = 'UPDATE ' .
         $this->getTableName() .
         ' SET ' .
@@ -91,9 +100,9 @@ class ProductMapper extends DataMapper
     }
     private function mapToProduct(array $rows): Product
     {
-        return Product::getDataFromProductMapper($rows);
+        return $this->product->getDataFromProductMapper($rows);
     }
-    private function transformToNormalFormat(string $str): string
+    private function transformToDbFormat(string $str): string
     {
         return strtolower(preg_replace('/(?<!^)[A-Z]/', '_$0', $str));
     }

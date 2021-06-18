@@ -32,4 +32,6 @@ $router->get('/cart/add', [CartController::class, 'addProductToCart']);
 $router->get('/cart/d', [CartController::class, 'deleteProductFromCart']);
 $router->get('/order', [\src\Controller\OrderController::class, 'orderAction']);
 $router->post('/order', [\src\Controller\OrderController::class, 'orderAction']);
+$router->get('/get/products', [\src\Controller\ApiProductController::class, 'getProductsList']);
+$router->get('/get/product', [\src\Controller\ApiProductController::class, 'getProduct']);
 $router->run();

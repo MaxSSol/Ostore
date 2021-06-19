@@ -42,7 +42,7 @@ class CartController extends Controller
             $cart->setUserId($this->getUser());
             $cart->setProductId((int)$this->params['id']);
             $cart->setQuantity(1);
-            $this->cartMapper->insert($cart);
+            $this->cartMapper->addProductsInCart($cart);
             header('Location:/products');
         }
     }

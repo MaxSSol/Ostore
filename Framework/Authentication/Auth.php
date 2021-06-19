@@ -62,7 +62,7 @@ class Auth
                     $params['city'],
                     $params['address']
                 );
-                $result = $this->userMapper->insert($user);
+                $result = $this->userMapper->addUser($user);
                 if ($result == null) {
                     $this->session->start();
                     $this->session->set('isAuth', true);

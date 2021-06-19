@@ -59,7 +59,7 @@ class OrderStatusMapper extends DataMapper
         }
         return $orderStatusArr;
     }
-    public function insert(OrderStatus $orderStatus)
+    public function addOrder(OrderStatus $orderStatus)
     {
         $paramToQuery = [];
         $valueToQuery = [];
@@ -86,7 +86,7 @@ class OrderStatusMapper extends DataMapper
             ')';
         $this->db->query($sql, $paramToDb);
     }
-    public function update(OrderStatus $orderStatus)
+    public function updateOrder(OrderStatus $orderStatus)
     {
         $id = $orderStatus->getId();
         $param = [
@@ -109,7 +109,7 @@ class OrderStatusMapper extends DataMapper
             ' WHERE id=:id';
         $this->db->query($sql, $paramToDb);
     }
-    public function delete(OrderStatus $orderStatus)
+    public function deleteOrder(OrderStatus $orderStatus)
     {
         if (!empty($orderStatus->getId())) {
             $paramToDb[':id'] = $orderStatus->getId();

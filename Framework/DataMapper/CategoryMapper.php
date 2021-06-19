@@ -23,7 +23,7 @@ class CategoryMapper extends DataMapper
         }
         return $categoriesArr;
     }
-    public function insert(Category $category)
+    public function addCategory(Category $category)
     {
         $paramToQuery = [];
         $valueToQuery = [];
@@ -31,7 +31,7 @@ class CategoryMapper extends DataMapper
         array_filter((array)$category);
         foreach ($category as $key => $value) {
             if ($key !== 'id') {
-                $param = $this->transformToNormalFormat($key);
+                $param = $this->transformToDbFormat($key);
                 $paramKeyFormat = ':' . $param;
                 $paramToQuery[] = $param;
                 $valueToQuery[] = $paramKeyFormat;
@@ -47,7 +47,7 @@ class CategoryMapper extends DataMapper
         ')';
         $this->db->query($sql, $paramToDb);
     }
-    public function update(Category $category)
+    public function updateCategory(Category $category)
     {
         $paramToQuery = [];
         $valueToQuery = [];
@@ -56,7 +56,7 @@ class CategoryMapper extends DataMapper
         array_filter((array)$category);
         foreach ($category as $key => $value) {
             if ($key !== 'id' && $key !== 'createdAt') {
-                $param = $this->transformToNormalFormat($key);
+                $param = $this->transformToDbFormat($key);
                 $paramKeyFormat = ':' . $param;
                 $paramToQuery[] = $param . '=' . $paramKeyFormat;
                 $paramToDb[$paramKeyFormat] = $value;
@@ -70,7 +70,7 @@ class CategoryMapper extends DataMapper
             ' WHERE id=:id';
         $this->db->query($sql, $paramToDb);
     }
-    public function delete(Category $category)
+    public function deleteCategory(Category $category)
     {
         if (!empty($category->getId())) {
             $paramToDb[':id'] = $category->getId();
@@ -88,7 +88,7 @@ class CategoryMapper extends DataMapper
     {
         return $this->category->mapDataFromCategoryMapper($rows);
     }
-    private function transformToNormalFormat(string $str): string
+    private function transformToDbFormat(string $str): string
     {
         return strtolower(preg_replace('/(?<!^)[A-Z]/', '_$0', $str));
     }

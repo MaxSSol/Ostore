@@ -46,7 +46,7 @@ class UserMapper extends DataMapper
             return $result ? $this->mapToUser($result[0]) : null;
         }
     }
-    public function insert(User $user)
+    public function addUser(User $user)
     {
         $paramToQuery = [];
         $valueToQuery = [];
@@ -70,7 +70,7 @@ class UserMapper extends DataMapper
             ')';
         $this->db->query($sql, $paramToDb);
     }
-    public function update(User $user)
+    public function updateUserInformation(User $user)
     {
         $paramToQuery = [];
         $valueToQuery = [];
@@ -93,7 +93,7 @@ class UserMapper extends DataMapper
             ' WHERE id=:id';
         $this->db->query($sql, $paramToDb);
     }
-    public function delete(User $user)
+    public function deleteUser(User $user)
     {
         if (!empty($user->getId())) {
             $paramToDb[':id'] = $user->getId();

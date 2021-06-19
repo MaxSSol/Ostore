@@ -9,8 +9,9 @@
     "require": {
         "squizlabs/php_codesniffer": "^3.6",
         "friendsofphp/php-cs-fixer": "^3.0",
-      "ext-json": "*",
-      "ext-pdo": "*"
+        "ext-json": "*",
+        "ext-pdo": "*",
+        "maxssol/telegram-logger": "^1.0"
     },
     "description": "",
     "autoload": {

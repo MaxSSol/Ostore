@@ -34,7 +34,7 @@ class ProductMapper extends DataMapper
         }
         return $productArr;
     }
-    public function insert(Product $product)
+    public function addProduct(Product $product)
     {
         $paramToQuery = [];
         $valueToQuery = [];
@@ -61,7 +61,7 @@ class ProductMapper extends DataMapper
             ')';
         $this->db->query($sql, $paramToDb);
     }
-    public function update(Product $product)
+    public function updateProduct(Product $product)
     {
         $id = $product->getId();
         $param = [
@@ -84,7 +84,7 @@ class ProductMapper extends DataMapper
         ' WHERE id=:id';
         $this->db->query($sql, $paramToDb);
     }
-    public function delete(Product $product)
+    public function deleteProduct(Product $product)
     {
         if (!empty($product->getId())) {
             $paramToDb[':id'] = $product->getId();

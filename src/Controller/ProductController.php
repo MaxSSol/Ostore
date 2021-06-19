@@ -26,12 +26,11 @@ class ProductController extends Controller
 
     public function viewAction(): void
     {
-        $products = $this->productMapper->getProductList();
         $categories = $this->categoryMapper->getCategoriesList();
         $this->view->render(
             'show/show',
             'Products',
-            ['css' => 'style/showProducts.css', 'products' => $products, 'categories' => $categories]
+            ['css' => 'style/showProducts.css','categories' => $categories]
         );
     }
     public function viewProductAction(): void

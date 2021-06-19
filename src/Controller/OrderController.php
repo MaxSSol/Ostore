@@ -44,7 +44,7 @@ class OrderController extends Controller
         $userId = $this->userMapper->getUserByColumns(['login' => $this->auth->getLogin()]);
         $orders = $this->orderStatusMapper->getOrder($this->params, $userId->getId(), 'Processed', '');
         foreach ($orders as $order) {
-            $this->orderStatusMapper->insert($order);
+            $this->orderStatusMapper->addOrder($order);
         }
         return true;
     }

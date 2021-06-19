@@ -27,7 +27,7 @@ class CartMapper extends DataMapper
     }
     public function getTotalPrice(int $userId): Cart
     {
-        $paramToDb = [$this->transformToNormalFormat(':userId') => $userId];
+        $paramToDb = [$this->transformToDbFormat(':userId') => $userId];
         $sql = 'SELECT SUM(p.price) AS total_price FROM cart 
         JOIN products p on p.id = cart.product_id WHERE user_id=:user_id';
         $result = $this->db->query($sql, $paramToDb);
@@ -43,25 +43,25 @@ class CartMapper extends DataMapper
         }
         return $productArr;
     }
-    public function insert(Cart $cart): void
+    public function addProductsInCart(Cart $cart): void
     {
         $paramToDb = [
-            $this->transformToNormalFormat(':userId') => $cart->getUserId(),
-            $this->transformToNormalFormat(':productId') => $cart->getProductId(),
-            $this->transformToNormalFormat(':quantity') => $cart->getQuantity(),
+            $this->transformToDbFormat(':userId') => $cart->getUserId(),
+            $this->transformToDbFormat(':productId') => $cart->getProductId(),
+            $this->transformToDbFormat(':quantity') => $cart->getQuantity(),
         ];
         $sql = 'INSERT INTO ' .
             $this->getTableName() .
             '(user_id,product_id,quantity)VALUES(:user_id,:product_id,:quantity)';
         $this->db->query($sql, $paramToDb);
     }
-    public function update(Cart $cart): void
+    public function updateCart(Cart $cart): void
     {
         $paramToDb = [];
         $id = $cart->getId();
         $paramToDb = [
             ':id' => $id,
-            $this->transformToNormalFormat(':quantity') => $cart->getQuantity()
+            $this->transformToDbFormat(':quantity') => $cart->getQuantity()
             ];
         $sql = 'UPDATE ' .
             $this->getTableName() .
@@ -105,7 +105,7 @@ class CartMapper extends DataMapper
     {
         return $this->cart->mapDataFromCartMapper($rows);
     }
-    private function transformToNormalFormat(string $str): string
+    private function transformToDbFormat(string $str): string
     {
         return strtolower(preg_replace('/(?<!^)[A-Z]/', '_$0', $str));
     }

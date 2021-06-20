@@ -3,6 +3,7 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
+use Dotenv\Dotenv;
 use Framework\Router\Router;
 use Framework\Session\Session;
 use src\Controller\AccountController;
@@ -11,6 +12,11 @@ use src\Controller\MainController;
 use src\Controller\ProductController;
 
 require_once __DIR__ . '/../vendor/autoload.php';
+
+$envName = getenv('APP_ENV') === 'testing' ? '.env.testing' : '.env';
+
+$dotenv = Dotenv::createImmutable(__DIR__ . '/../', $envName);
+$dotenv->load();
 
 $session = new Session();
 $session->setSavePath('/src/config/Session/');

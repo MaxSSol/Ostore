@@ -10,7 +10,11 @@ class Database
     private PDO $db;
     public function __construct()
     {
-        $config = require_once __DIR__ . '/../config/configDb.php';
+        $connection = $_ENV['DB_CONNECTION'];
+        $host = $_ENV['DB_HOST'];
+        $database = $_ENV['DB_DATABASE'];
+        $user = $_ENV['DB_USERNAME'];
+        $password = $_ENV['DB_PASSWORD'];
         $opt = [
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
@@ -18,11 +22,11 @@ class Database
         ];
         $this->db = new PDO(
             'mysql:host=' .
-            $config['host'] .
+            $host .
             ';dbname=' .
-            $config['dbname'],
-            $config['user'],
-            $config['password'],
+            $database,
+            $user,
+            $password,
             $opt
         );
     }

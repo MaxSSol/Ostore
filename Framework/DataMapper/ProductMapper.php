@@ -19,14 +19,14 @@ class ProductMapper extends DataMapper
     {
         $params = [':id' => $id];
         $sql ="select p.id,title,p.description,price,amount,p.created_at,p.update_at, pP.photo FROM products p
-        JOIN productPhotos pP on p.id = pP.product_id WHERE p.id=:id AND position = ''";
+        JOIN product_photo pP on p.id = pP.product_id WHERE p.id=:id AND position = ''";
         $result = $this->db->query($sql, $params);
         return $result ? $this->mapToProduct($result[0]) : null;
     }
     public function getProductList(): array
     {
         $sql = "select p.id,title,price,amount,p.created_at,p.update_at, pP.photo FROM products p
-        JOIN productPhotos pP on p.id = pP.product_id WHERE position = 'main'";
+        JOIN product_photo pP on p.id = pP.product_id WHERE position = 'main'";
         $result = $this->db->query($sql);
         $productArr = [];
         for ($i = 0; $i < count($result); $i++) {

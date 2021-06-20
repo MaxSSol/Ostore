@@ -14,4 +14,8 @@ abstract class DataMapper
         $this->query = new QueryBuilder();
         $this->db = Database::getInstance();
     }
+    public function getLastInsertId(): int
+    {
+        return $this->db->getLastInsertId();
+    }
 }

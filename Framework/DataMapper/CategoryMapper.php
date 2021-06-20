@@ -25,19 +25,9 @@ class CategoryMapper extends DataMapper
     }
     public function addCategory(Category $category)
     {
-        $paramToQuery = [];
-        $valueToQuery = [];
-        $paramToDb = [];
-        array_filter((array)$category);
-        foreach ($category as $key => $value) {
-            if ($key !== 'id') {
-                $param = $this->transformToDbFormat($key);
-                $paramKeyFormat = ':' . $param;
-                $paramToQuery[] = $param;
-                $valueToQuery[] = $paramKeyFormat;
-                $paramToDb[$paramKeyFormat] = $value;
-            }
-        }
+        $paramToQuery = ['title'];
+        $valueToQuery = [':title'];
+        $paramToDb = [':title' => $category->getTitle()];
         $sql = 'INSERT INTO ' .
         $this->getTableName() .
         '(' .
@@ -49,20 +39,9 @@ class CategoryMapper extends DataMapper
     }
     public function updateCategory(Category $category)
     {
-        $paramToQuery = [];
-        $valueToQuery = [];
-        $paramToDb = [];
-        $id = $category->getId();
-        array_filter((array)$category);
-        foreach ($category as $key => $value) {
-            if ($key !== 'id' && $key !== 'createdAt') {
-                $param = $this->transformToDbFormat($key);
-                $paramKeyFormat = ':' . $param;
-                $paramToQuery[] = $param . '=' . $paramKeyFormat;
-                $paramToDb[$paramKeyFormat] = $value;
-            }
-        }
-        $paramToDb[':id'] = $id;
+        $paramToQuery = ['title=:title'];
+        $paramToDb = [':title' => $category->getTitle()];
+        $paramToDb[':id'] = $category->getId();
         $sql = 'UPDATE ' .
             $this->getTableName() .
             ' SET ' .

@@ -121,7 +121,7 @@ class OrderStatusMapper extends DataMapper
     }
     private function getTableName(): string
     {
-        return 'orderStatus';
+        return 'order_status';
     }
     private function mapToOrderStatus(array $rows): OrderStatus
     {

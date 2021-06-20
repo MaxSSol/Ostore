@@ -15,10 +15,10 @@ class CategoryProductMapper extends DataMapper
     }
     public function getProductsByCategory(string $category): array
     {
-        $sql = "SELECT cP.id,p.title,p.price,cP.product_id,c.title AS category_title,pP.photo FROM categoryProduct cP
+        $sql = "SELECT cP.id,p.title,p.price,cP.product_id,c.title AS category_title,pP.photo FROM category_product cP
         JOIN products p on p.id = cP.product_id 
         JOIN categories c on c.id = cP.category_id 
-        JOIN productPhotos pP on p.id = pP.product_id 
+        JOIN product_photo pP on p.id = pP.product_id 
         WHERE c.title =:category AND pP.position = 'main'";
         $productArr = [];
         $result = $this->db->query($sql, [':category'=>$category]);
@@ -84,7 +84,7 @@ class CategoryProductMapper extends DataMapper
     }
     private function getTableName(): string
     {
-        return 'categoryProduct';
+        return 'category_product';
     }
     private function mapToCategoryProduct($rows): CategoryProduct
     {

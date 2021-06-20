@@ -11,7 +11,8 @@
         "friendsofphp/php-cs-fixer": "^3.0",
         "ext-json": "*",
         "ext-pdo": "*",
-        "maxssol/telegram-logger": "^1.0"
+        "maxssol/telegram-logger": "^1.0",
+        "vlucas/phpdotenv": "^5.3"
     },
     "description": "",
     "autoload": {
@@ -19,5 +20,11 @@
             "src\\": "src/",
             "Framework\\": "Framework/"
         }
+    },
+    "require-dev": {
+        "codeception/codeception": "^4.1",
+        "codeception/module-phpbrowser": "^1.0.0",
+        "codeception/module-asserts": "^1.0.0",
+        "codeception/module-db": "^1.1"
     }
 }

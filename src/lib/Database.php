@@ -46,4 +46,8 @@ class Database
         }
         return self::$instance;
     }
+    public function getLastInsertId(): int
+    {
+        return $this->db->lastInsertId();
+    }
 }

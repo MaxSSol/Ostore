@@ -13,8 +13,8 @@ use src\Controller\ProductController;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
-$envName = getenv('APP_ENV') === 'testing' ? '.env.testing' : '.env';
-
+//$envName = getenv('APP_ENV') === 'testing' ? '.env.testing' : '.env';
+$envName = '.env.testing';
 $dotenv = Dotenv::createImmutable(__DIR__ . '/../', $envName);
 $dotenv->load();
 

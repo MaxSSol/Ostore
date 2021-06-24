@@ -28,7 +28,7 @@ class CartMapper extends DataMapper
     public function getTotalPrice(int $userId): Cart
     {
         $paramToDb = [$this->transformToDbFormat(':userId') => $userId];
-        $sql = 'SELECT SUM(p.price) AS total_price FROM cart 
+        $sql = 'SELECT SUM(p.price * quantity) AS total_price FROM cart 
         JOIN products p on p.id = cart.product_id WHERE user_id=:user_id';
         $result = $this->db->query($sql, $paramToDb);
         return $this->mapToCart($result[0]);
@@ -62,7 +62,7 @@ class CartMapper extends DataMapper
         $paramToDb = [
             ':id' => $id,
             $this->transformToDbFormat(':quantity') => $cart->getQuantity()
-            ];
+        ];
         $sql = 'UPDATE ' .
             $this->getTableName() .
             ' SET quantity=:quantity WHERE id=:id';
@@ -83,7 +83,6 @@ class CartMapper extends DataMapper
                 $this->getTableName() .
                 ' WHERE user_id=:user_id AND ' .
                 implode(',', $paramToQuery);
-            var_dump($paramToDb);
             $this->db->query($sql, $paramToDb);
         }
     }

@@ -35,17 +35,11 @@ class ProductController extends Controller
     }
     public function viewProductAction(): void
     {
-        if ($this->checkParams()) {
-            $id = (int)$this->params['id'];
-            $product = $this->productMapper->getProductById($id);
-            $this->view->render(
-                'show/product',
-                'Product',
-                ['css' => 'style/product.css', 'product' => $product]
-            );
-        } else {
-            echo 'Product not found';
-        }
+        $this->view->render(
+            'show/product',
+            'Product',
+            ['css' => 'style/product.css']
+        );
     }
     public function viewProductByCategory(): void
     {

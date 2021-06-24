@@ -8,7 +8,7 @@ class OrderStatusMapperCest
     private OrderStatus $order;
     private OrderStatusMapper $orderStatusMapper;
     private int $lastInsertId;
-    public function _before(UnitTester $I)
+    public function __construct()
     {
         $this->order = new OrderStatus();
         $this->orderStatusMapper = new OrderStatusMapper();

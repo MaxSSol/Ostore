@@ -11,7 +11,6 @@ class HomePageCest
     {
         $I->amOnPage('/');
         $I->see('Products');
-        $I->see('Only in Ostore');
         $I->see('Delivery');
     }
 }

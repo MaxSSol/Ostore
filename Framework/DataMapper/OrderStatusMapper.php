@@ -18,11 +18,13 @@ class OrderStatusMapper extends DataMapper
         $orderArr = [];
         $order = array_chunk($data, 2, true);
         for ($i = 0; $i < count($order); $i++) {
+            $product = '';
             foreach ($order[$i] as $key => $value) {
-                if (preg_match('/product_id_([0-9]+)/', $key)) {
+                if (preg_match('/product_id([_0-9]{0,4})/', $key)) {
                     $orderArr[$i][$key] = $value ;
+                    $product .= $key;
                 }
-                if (preg_match('/quantity_([0-9]+)/', $key)) {
+                if (preg_match('/quantity([_0-9]{0,4})/', $key) && $product !== '') {
                     $orderArr[$i][$key] = $value;
                     $orderArr[$i]['user_id'] = $userId;
                     $orderArr[$i]['status'] = $status;
@@ -50,8 +52,8 @@ class OrderStatusMapper extends DataMapper
         p.price,
         oS.quantity
         FROM ' .
-        $this->getTableName() .
-        ' oS JOIN products p on p.id = oS.product_id WHERE oS.user_id=:user_id';
+            $this->getTableName() .
+            ' oS JOIN products p on p.id = oS.product_id WHERE oS.user_id=:user_id';
         $result = $this->db->query($sql, $paramToDb);
         $orderStatusArr = [];
         for ($i = 0; $i < count($result); $i++) {

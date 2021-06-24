@@ -1,6 +1,9 @@
 window.Vue = require('vue')
 
 Vue.component('productPage', require('./components/Product/productPage.vue').default)
+Vue.component('mainPage', require('./components/Main/mainPage.vue').default)
+Vue.component('mainSlider', require('./components/Main/mainSlider.vue').default)
+Vue.component('mainProducts', require('./components/Main/mainProducts.vue').default)
 Vue.component('cart', require('./components/Cart/cart.vue').default)
 Vue.component('cartPage', require('./components/Cart/cartPage.vue').default)
 Vue.component('product', require('./components/Products/product.vue').default)

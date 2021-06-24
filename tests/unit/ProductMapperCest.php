@@ -8,7 +8,7 @@ class ProductMapperCest
     private Product $product;
     private ProductMapper $productMapper;
     private int $lastInsertId;
-    public function _before(UnitTester $I)
+    public function __construct()
     {
         $this->product = new Product();
         $this->productMapper = new ProductMapper();

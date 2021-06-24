@@ -8,7 +8,7 @@ class CartMapperCest
     private Cart $cart;
     private CartMapper $cartMapper;
     private int $lastInsertId;
-    public function _before(UnitTester $I)
+    public function __construct()
     {
         $this->cart = new Cart();
         $this->cartMapper = new CartMapper();

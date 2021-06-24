@@ -8,7 +8,7 @@ class CategoryMapperCest
     private Category $category;
     private CategoryMapper $categoryMapper;
     private int $lastInsertId;
-    public function _before(UnitTester $I)
+    public function __construct()
     {
         $this->category = new Category();
         $this->categoryMapper = new CategoryMapper();

@@ -1,0 +1,36 @@
+body{
+    margin: 0 auto;
+}
+.product-img img{
+    height: 500px;
+    width: 500px;
+}
+.product-info{
+    margin: 0 auto;
+}
+.description-inner{
+    height: 100%;
+    width: 100%;
+    margin-bottom: 25px;
+}
+.description-title{
+    margin: 0 auto;
+    width: 900px;
+    font-size: 18px;
+}
+.product-price{
+    font-size: 18px;
+}
+.product-amount{
+    font-size: 18px;
+}
+.footer{
+    height: 150px;
+    width: 100%;
+    background-color: #eee;
+}
+.footer-icon{
+    margin-right: 10px;
+    height: 35px;
+    width: 35px;
+}

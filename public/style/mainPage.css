@@ -1,0 +1,28 @@
+body{
+   margin: 0 auto;
+}
+.promo-inner{
+    height: 100%;
+    background-color: #FFF;
+}
+.card>img{
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
+}
+.card-body{
+    background-color: #eee;
+    width: 100%;
+    height: 200px;
+    margin-bottom: 15px;
+}
+.footer{
+    height: 200px;
+    width: 100%;
+    background-color: #eee;
+}
+.footer-icon{
+    margin-right: 10px;
+    height: 35px;
+    width: 35px;
+}

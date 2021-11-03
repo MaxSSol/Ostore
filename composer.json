@@ -1,0 +1,30 @@
+{
+    "name": "maksym/ostore",
+    "authors": [
+        {
+            "name": "Maksym Solomianyi",
+            "email": "maxssolom@gmail.com"
+        }
+    ],
+    "require": {
+        "squizlabs/php_codesniffer": "^3.6",
+        "friendsofphp/php-cs-fixer": "^3.0",
+        "ext-json": "*",
+        "ext-pdo": "*",
+        "maxssol/telegram-logger": "^1.0",
+        "vlucas/phpdotenv": "^5.3"
+    },
+    "description": "",
+    "autoload": {
+        "psr-4": {
+            "src\\": "src/",
+            "Framework\\": "Framework/"
+        }
+    },
+    "require-dev": {
+        "codeception/codeception": "^4.1",
+        "codeception/module-phpbrowser": "^1.0.0",
+        "codeception/module-asserts": "^1.0.0",
+        "codeception/module-db": "^1.1"
+    }
+}
